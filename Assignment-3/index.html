@@ -1,17 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Simple Web Page</title>
+    <title>Student Registration Form</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
 
-    <div class="container">
-        <h1 id="text">Hello, World!</h1>
-        <button onclick="changeText()">Click Me</button>
-    </div>
+<h2 id="mainTitle">Student Registration Form</h2>
 
-    <script src="script.js"></script>
+<form id="regForm">
+
+    <label>Username:</label>
+    <input type="text" id="username"><br>
+
+    <label>Email:</label>
+    <input type="text" id="email"><br>
+
+    <label>Phone Number:</label>
+    <input type="text" id="phone"><br>
+
+    <label>Password:</label>
+    <input type="password" id="password"><br>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirmPassword"><br>
+
+    <button type="button" id="submitBtn" onclick="validateForm()">Register</button>
+</form>
+
+<p id="message"></p>
+
+<hr>
+
+<!-- Image Section -->
+<img id="myImage" src="https://via.placeholder.com/150" width="150">
+<br><br>
+<button onclick="changeImage()">Change Image</button>
+
+<br><br>
+
+<button id="jqueryBtn">jQuery Button</button>
+<button onclick="addText()">Add Text Node</button>
+<button onclick="deleteNode()">Delete Node</button>
+
+<div id="textContainer"></div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
