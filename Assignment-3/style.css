@@ -1,22 +1,105 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+// FORM VALIDATION
+function validateForm() {
+
+    let username = document.getElementById("username").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let confirmPassword = document.getElementById("confirmPassword").value.trim();
+    let message = document.getElementById("message");
+
+    // Check empty fields
+    if (username === "" || email === "" || phone === "" || password === "" || confirmPassword === "") {
+        message.innerHTML = "Fields cannot be empty!";
+        message.style.color = "red";
+        return false;
+    }
+
+    // Phone validation (10 digits numeric)
+    let phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(phone)) {
+        message.innerHTML = "Phone number must be 10 digits.";
+        message.style.color = "red";
+        return false;
+    }
+
+    // Password validation
+    let passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[&$#@]).{7,}$/;
+    if (!passwordRegex.test(password)) {
+        message.innerHTML = "Password must contain 1 capital, 1 digit, 1 special (&,$,#,@) and min 7 characters.";
+        message.style.color = "red";
+        return false;
+    }
+
+    // Confirm password match
+    if (password !== confirmPassword) {
+        message.innerHTML = "Passwords do not match!";
+        message.style.color = "red";
+        return false;
+    }
+
+    // Email validation
+    let emailRegex = /^[a-zA-Z]{2,}@[a-zA-Z]{3}\.[a-zA-Z]{2,3}$/;
+    if (!emailRegex.test(email)) {
+        message.innerHTML = "Invalid Email format!";
+        message.style.color = "red";
+        return false;
+    }
+
+    message.innerHTML = "Registration Successful!";
+    message.style.color = "green";
 }
 
-.container {
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+// DOM MANIPULATION
+
+// Change image source
+function changeImage() {
+    document.getElementById("myImage").src = "https://via.placeholder.com/150/0000FF";
 }
 
-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
+// Add text node
+function addText() {
+    let textNode = document.createTextNode("This text was added dynamically!");
+    let para = document.createElement("p");
+    para.appendChild(textNode);
+    document.getElementById("textContainer").appendChild(para);
 }
+
+// Delete node
+function deleteNode() {
+    let container = document.getElementById("textContainer");
+    if (container.lastChild) {
+        container.removeChild(container.lastChild);
+    }
+}
+
+
+// Access using getElementsByTagName
+let paragraphs = document.getElementsByTagName("p");
+
+// Access using getElementsByClassName (example if added)
+let buttons = document.getElementsByClassName("btn");
+
+
+// jQuery Section
+$(document).ready(function(){
+
+    // Change button text
+    $("#jqueryBtn").click(function(){
+        $(this).text("Button Text Changed!");
+    });
+
+    // Set background image
+    $("body").css("background-image", "url('https://via.placeholder.com/800x600')");
+
+    // Access form data
+    $("#submitBtn").click(function(){
+        let name = $("#username").val();
+        console.log("Username entered: " + name);
+    });
+
+    // Add attribute
+    $("#jqueryBtn").attr("title", "This is a jQuery Button");
+
+});
